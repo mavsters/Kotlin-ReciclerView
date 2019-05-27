@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ReciclerView</string>
+    <string name="txt_name">Digite Nombre...</string>
+    <string name="txt_phone">Digite Télefono...</string>
+    <string name="btn_close">Cerrar</string>
+
+</resources>
