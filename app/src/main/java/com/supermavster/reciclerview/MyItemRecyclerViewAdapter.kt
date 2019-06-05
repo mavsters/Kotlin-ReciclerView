@@ -60,4 +60,5 @@ class MyItemRecyclerViewAdapter(
             return super.toString() + " '" + mContentView.text + "'"
         }
     }
+
 }

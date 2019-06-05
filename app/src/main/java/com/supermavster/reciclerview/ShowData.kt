@@ -7,6 +7,10 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.navigation.Navigation
+import kotlinx.android.synthetic.main.fragment_show_data.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,24 +29,29 @@ private const val ARG_PARAM2 = "param2"
  */
 class ShowData : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var param1: ArrayList<String>? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            param1 = it.getStringArrayList("data");
         }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+var viewMain = inflater.inflate(R.layout.fragment_show_data, container, false);
+        viewMain.findViewById<TextView>(R.id.txt_name).text = param1?.get(0);
+        viewMain.findViewById<TextView>(R.id.txt_phone).text = param1?.get(1);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_show_data, container, false)
+        viewMain.findViewById<Button>(R.id.btn_close).setOnClickListener {
+            Navigation.findNavController(viewMain).navigate(R.id.itemFragment)
+        }
+        return viewMain
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -55,7 +64,7 @@ class ShowData : Fragment() {
         if (context is OnFragmentInteractionListener) {
             listener = context
         } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+            //throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
         }
     }
 
